@@ -259,6 +259,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1778945588}
+  farBc: {fileID: 270509996}
+  middleBc: {fileID: 99542106}
+  parallaxFactor: 0.5
+  maxHeight: 8
+  minHeight: -12
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -858,7 +863,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 587aa8ee1eb2b73499a4ce5ee053d239, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
+  moveSpeed: 7
   jumpForce: 10
   maxJump: 2
 --- !u!95 &1778945592
