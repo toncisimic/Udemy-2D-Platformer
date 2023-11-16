@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
     private int currentJump;
     private Animator anim;
     private SpriteRenderer spriteRenderer;
+    public CameraController cameraController;
+    private bool isHeightTriggered;
 
 
     // Start is called before the first frame update
@@ -21,6 +23,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>(); // Cache the Rigidbody2D component
         anim = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        isHeightTriggered = false;
     }
 
     // Update is called once per frame
@@ -65,7 +68,7 @@ public class PlayerController : MonoBehaviour
     // Assuming you have a way to check if the player is grounded
     void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("Usao u colision");
+        
         // Check if the collision is with the ground
         if (collision.gameObject.CompareTag("Ground"))
         {
@@ -81,5 +84,20 @@ public class PlayerController : MonoBehaviour
         {
             isGrounded = false;
         }
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("HTrigger"))
+        {
+            Debug.Log("Usao u trigger");
+            cameraController.maxHeight = cameraController.maxHeight + 100;
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        Debug.Log("Izasao u trigger");
+        cameraController.maxHeight = cameraController.maxHeight - 100;
     }
 }
