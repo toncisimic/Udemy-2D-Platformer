@@ -86,6 +86,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("HTrigger"))
@@ -94,10 +95,11 @@ public class PlayerController : MonoBehaviour
             cameraController.maxHeight = cameraController.maxHeight + 100;
         }
     }
-
+/*
     void OnTriggerExit2D(Collider2D other)
     {
         Debug.Log("Izasao u trigger");
         cameraController.maxHeight = cameraController.maxHeight - 100;
     }
+*/
 }
