@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ground
   - HTrigger
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -48,6 +49,15 @@ TagManager:
     locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Effects
+    uniqueID: 2767421259
+    locked: 0
+  - name: Pickups
+    uniqueID: 2451690657
+    locked: 0
+  - name: Enemies
+    uniqueID: 4078502809
     locked: 0
   - name: Player
     uniqueID: 4192790563
