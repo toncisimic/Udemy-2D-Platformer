@@ -53,4 +53,25 @@ public class LevelManager : MonoBehaviour
 
 
     }
+
+    public void EndLevelF()
+    {
+        StartCoroutine(EndLevelCo());
+    }
+
+    public IEnumerator EndLevelCo()
+    {
+        PlayerController.instance.stopInput = true;
+
+        yield return new WaitForSeconds(1.5f);
+
+        CameraController.instance.follow = true;
+        PlayerController.instance.StopPlayer();
+
+        yield return new WaitForSeconds(1.5f);
+
+        EndLevel.instance.StartEndAnimation();
+    }
+
+
 }

@@ -9,9 +9,9 @@ public class UIController : MonoBehaviour
     public Image heart1, heart2, heart3, fadeScreen;
     public Sprite fullHeart, emptyHeart;
     public Text gemText;
+    public GameObject endText;
     public float fadeSpeed;
     public bool shouldFadeToBlack, shouldFadeFromBlack;
-
 
     void Awake()
     {

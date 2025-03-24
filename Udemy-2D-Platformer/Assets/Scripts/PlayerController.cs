@@ -21,6 +21,8 @@ public class PlayerController : MonoBehaviour
     private float knockBackCounter;
     public float bounceForce;
 
+    public bool stopInput;
+
     private void Awake()
     {
         instance = this;
@@ -39,7 +41,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!PauseMenu.instance.pauseScreen.active)
+        if (!PauseMenu.instance.pauseScreen.active && !stopInput)
         {
             if (knockBackCounter <= 0)
             {
@@ -63,7 +65,7 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (!PauseMenu.instance.pauseScreen.active)
+        if (!PauseMenu.instance.pauseScreen.active && !stopInput)
         {
             if (knockBackCounter <= 0)
             {
@@ -142,5 +144,11 @@ public class PlayerController : MonoBehaviour
         rb.velocity = new Vector2(rb.velocity.x,bounceForce);
         AudioManager.instance.PlaySFX(9);
 
+    }
+
+    public void StopPlayer()
+    {
+        rb.velocity = new Vector2(0, rb.velocity.y);
+        anim.SetTrigger("isEnd");
     }
 }
