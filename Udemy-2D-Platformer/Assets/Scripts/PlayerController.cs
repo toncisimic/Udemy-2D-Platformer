@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
     public static PlayerController instance;
     public float moveSpeed;
     public float jumpForce;
-    private Rigidbody2D rb;
+    public Rigidbody2D rb;
     private bool isGrounded;
     private float horizontalInput;
     public int maxJump = 2;
@@ -105,19 +105,29 @@ public class PlayerController : MonoBehaviour
     {
         
         // Check if the collision is with the ground
-        if (collision.gameObject.CompareTag("Ground"))
+        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Platform") )
         {
             isGrounded = true;
             currentJump = 0;
+        }
+
+        if (collision.gameObject.CompareTag("Platform"))
+        {
+            transform.parent = collision.transform;
         }
     }
 
     void OnCollisionExit2D(Collision2D collision)
     {
         // Check if the collision is with the ground
-        if (collision.gameObject.CompareTag("Ground"))
+        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Platform"))
         {
             isGrounded = false;
+        }
+
+        if (collision.gameObject.CompareTag("Platform"))
+        {
+            transform.parent = null;
         }
     }
 

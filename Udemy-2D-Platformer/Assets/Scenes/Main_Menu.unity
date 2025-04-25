@@ -925,7 +925,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc306def23fa3e745b536e521f1480b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startScreen: Testing3
+  startScreen: LevelSelect
 --- !u!1001 &5030143538585471599
 PrefabInstance:
   m_ObjectHideFlags: 0

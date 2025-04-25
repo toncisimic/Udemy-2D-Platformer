@@ -6,48 +6,64 @@ public class LevelPalyer : MonoBehaviour
 {
     public MapPoint currentPoint;
     public float moveSpeed = 10f;
+
+    private bool canAcceptInput = true;
+    public LSManager LSManager;
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.position = Vector3.MoveTowards(transform.position, currentPoint.transform.position, moveSpeed * Time.deltaTime);
 
-        if (Input.GetAxisRaw("Horizontal") > .5f)
+        transform.position = Vector3.MoveTowards(
+            transform.position,
+            currentPoint.transform.position,
+            moveSpeed * Time.deltaTime
+        );
+
+        if (Vector3.Distance(transform.position, currentPoint.transform.position) < 0.001f)
         {
-           
-            if (currentPoint.right != null)
-            {
-                Debug.Log("DOSAO");
-                SetNextPoint(currentPoint.right);
-            }
+            canAcceptInput = true;
         }
 
-        if (Input.GetAxisRaw("Horizontal") < -.5f)
+        if (canAcceptInput)
         {
-            if (currentPoint.left != null)
+            float h = Input.GetAxisRaw("Horizontal");
+            float v = Input.GetAxisRaw("Vertical");
+
+            if (h > 0.5f && currentPoint.right != null)
+            {
+                SetNextPoint(currentPoint.right);
+            }
+            else if (h < -0.5f && currentPoint.left != null)
             {
                 SetNextPoint(currentPoint.left);
             }
-        }
-
-        if (Input.GetAxisRaw("Vertical") > .5f)
-        {
-            if (currentPoint.up != null)
+            else if (v > 0.5f && currentPoint.up != null)
             {
                 SetNextPoint(currentPoint.up);
             }
-        }
-
-        if (Input.GetAxisRaw("Vertical") < -.5f)
-        {
-            if (currentPoint.down != null)
+            else if (v < -0.5f && currentPoint.down != null)
             {
                 SetNextPoint(currentPoint.down);
+            }
+
+            if (currentPoint.isLevel && currentPoint.levelToLoad != "" && !currentPoint.isLocked)
+            {
+                LSUIController.instance.ShowInfo(currentPoint);
+
+                if (Input.GetButtonDown("Jump"))
+                {
+                    canAcceptInput = false;
+                    LSManager.LoadLevel();
+                }
+            } else
+            {
+                LSUIController.instance.HideInfo();
             }
         }
     }
@@ -55,5 +71,7 @@ public class LevelPalyer : MonoBehaviour
     public void SetNextPoint(MapPoint nextPoint)
     {
         currentPoint = nextPoint;
+        // čim odaberemo novi čvor, blokiramo daljnji input dok ne stignemo na njega
+        canAcceptInput = false;
     }
 }
