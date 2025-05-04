@@ -73,7 +73,8 @@ SpriteRenderer:
   m_SortingLayerID: -1843276639
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: -90375647409325229, guid: 646c9b56df3e3c0449e1e69cb8d36fc1, type: 3}
+  m_Sprite: {fileID: 4501626643336248173, guid: e35bd3a1294c4a74683d5ae3de6b615c,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -114,6 +115,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isGem: 0
   isHeal: 1
+  isFood: 0
   pickupEffect: {fileID: 8900285451844770976, guid: 1d09b241a2fca54448056df821eb6b3a,
     type: 3}
 --- !u!95 &293034623

@@ -10,6 +10,8 @@ public class SwitchController : MonoBehaviour
 
     public GameObject GameObject;
 
+    private Animator doorAnimator;
+
     private SpriteRenderer sr;
 
     public Sprite switchOn, switchOff;
@@ -17,6 +19,7 @@ public class SwitchController : MonoBehaviour
     void Start()
     {
         sr = GetComponent<SpriteRenderer>();
+        doorAnimator = GameObject.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -49,11 +52,9 @@ public class SwitchController : MonoBehaviour
 
     private void ActivateSwitch()
     {
-        switchStatus = !switchStatus;
+        sr.sprite = switchOn;
 
-        sr.sprite = switchStatus ? switchOn : switchOff;
-        
-        GameObject.SetActive(!switchStatus);
+        doorAnimator.SetTrigger("openDoor");
 
         Debug.Log($"Tipka E pritisnuta u zoni – nešto se događa! Switch je {switchStatus}");
     }
