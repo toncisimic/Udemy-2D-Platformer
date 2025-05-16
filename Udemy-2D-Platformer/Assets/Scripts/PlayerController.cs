@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,8 +8,8 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed;
     public float jumpForce;
     public Rigidbody2D rb;
-    private bool isGrounded;
-    private float horizontalInput;
+    public bool isGrounded;
+    public float horizontalInput;
     public int maxJump = 2;
     private int currentJump;
     private Animator anim;
@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
     private float knockBackCounter;
     public float bounceForce;
 
-    public bool stopInput;
+    public bool stopInput, levelFinished = false;
 
     private void Awake()
     {
@@ -98,24 +98,47 @@ public class PlayerController : MonoBehaviour
             anim.SetBool("isGrounded", isGrounded);
             anim.SetFloat("moveSpeed", Mathf.Abs(rb.velocity.x));
         }
+
+        if(!levelFinished)
+        {
+            if(stopInput)
+            {
+                Vector2 targetVelocity = new Vector2(7, rb.velocity.y);
+                rb.velocity = targetVelocity;
+                levelFinished = true;
+            }
+        }
     }
 
     // Assuming you have a way to check if the player is grounded
     void OnCollisionEnter2D(Collision2D collision)
     {
-        
-        // Check if the collision is with the ground
-        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Platform") )
+        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Platform"))
         {
-            isGrounded = true;
-            currentJump = 0;
-        }
-
-        if (collision.gameObject.CompareTag("Platform"))
-        {
-            transform.parent = collision.transform;
+            DoubleJump(collision);
         }
     }
+
+    public void DoubleJump(Collision2D collision)
+    {
+        foreach (ContactPoint2D contact in collision.contacts)
+        {
+            if (contact.normal.y > 0.5f) // znači da dolazi *odozdo* (tlo)
+            {
+                isGrounded = true;
+                currentJump = 0;
+
+                if (collision.gameObject.CompareTag("Platform"))
+                {
+                    transform.parent = collision.transform;
+                }
+
+                break; // Ne trebaš više kontakt točaka
+            }
+        }
+    }
+
+
 
     void OnCollisionExit2D(Collision2D collision)
     {
@@ -153,8 +176,13 @@ public class PlayerController : MonoBehaviour
     {
         rb.velocity = new Vector2(rb.velocity.x,bounceForce);
         AudioManager.instance.PlaySFX(9);
-
+    
     }
+
+    public void ResetJumpCounter()
+{
+    currentJump = 0;
+}
 
     public void StopPlayer()
     {

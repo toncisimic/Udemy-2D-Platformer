@@ -8,7 +8,7 @@ public class UIController : MonoBehaviour
     public static UIController instance;
     public Image heart1, heart2, heart3, fadeScreen;
     public Sprite fullHeart, emptyHeart;
-    public Text gemText, foodText;
+    public Text gemText, foodText, cointText;
     public GameObject endText;
     public float fadeSpeed;
     public bool shouldFadeToBlack, shouldFadeFromBlack;
@@ -79,6 +79,12 @@ public class UIController : MonoBehaviour
     {
         gemText.text = LevelManager.instance.gemsCollected.ToString();
         foodText.text = LevelManager.instance.foodCollected.ToString();
+    }
+
+
+    public void UpdateCointCountDisplay()
+    {
+        cointText.text = LevelManager.instance.coinCollected.ToString();
     }
 
     public void FadeToBlack()

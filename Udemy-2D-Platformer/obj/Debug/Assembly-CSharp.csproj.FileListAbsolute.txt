@@ -792,3 +792,14 @@ D:\ProjectsGit\Udemy-2D-Platformer\Udemy-2D-Platformer\obj\Debug\Assembly-CSharp
 D:\ProjectsGit\Udemy-2D-Platformer\Udemy-2D-Platformer\obj\Debug\Assembly.44154EF1.Up2Date
 D:\ProjectsGit\Udemy-2D-Platformer\Udemy-2D-Platformer\obj\Debug\Assembly-CSharp.dll
 D:\ProjectsGit\Udemy-2D-Platformer\Udemy-2D-Platformer\obj\Debug\Assembly-CSharp.pdb
+D:\ProjectsGit\Udemy-2D-Platformer\Udemy-2D-Platformer\Temp\bin\Debug\Unity.Timeline.Editor.pdb
+D:\ProjectsGit\Udemy-2D-Platformer\Udemy-2D-Platformer\Temp\bin\Debug\Unity.VSCode.Editor.pdb
+D:\ProjectsGit\Udemy-2D-Platformer\Udemy-2D-Platformer\Temp\bin\Debug\Unity.TextMeshPro.Editor.pdb
+D:\ProjectsGit\Udemy-2D-Platformer\Udemy-2D-Platformer\Temp\bin\Debug\UnityEngine.UI.pdb
+D:\ProjectsGit\Udemy-2D-Platformer\Udemy-2D-Platformer\Temp\bin\Debug\Unity.Timeline.pdb
+D:\ProjectsGit\Udemy-2D-Platformer\Udemy-2D-Platformer\Temp\bin\Debug\Unity.CollabProxy.Editor.pdb
+D:\ProjectsGit\Udemy-2D-Platformer\Udemy-2D-Platformer\Temp\bin\Debug\Unity.Rider.Editor.pdb
+D:\ProjectsGit\Udemy-2D-Platformer\Udemy-2D-Platformer\Temp\bin\Debug\Unity.2D.Sprite.Editor.pdb
+D:\ProjectsGit\Udemy-2D-Platformer\Udemy-2D-Platformer\Temp\bin\Debug\Unity.2D.Tilemap.Editor.pdb
+D:\ProjectsGit\Udemy-2D-Platformer\Udemy-2D-Platformer\Temp\bin\Debug\Unity.TextMeshPro.pdb
+D:\ProjectsGit\Udemy-2D-Platformer\Udemy-2D-Platformer\Temp\bin\Debug\UnityEditor.UI.pdb

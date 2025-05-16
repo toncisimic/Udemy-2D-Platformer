@@ -6,9 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/TonicGames.unity
+    guid: 581308113cc2d964e9a6c7fe0c56fd77
+  - enabled: 1
     path: Assets/Scenes/Main_Menu.unity
     guid: 1a4e0c39915ee314fa29b65b90d5b83f
   - enabled: 1
+    path: Assets/Scenes/PreScene.unity
+    guid: 05e917e4bfa8b614081202c055a437fc
+  - enabled: 0
     path: Assets/Scenes/LevelSelect.unity
     guid: 51f75c752e4f4174fb4e5e5cb40603ea
   - enabled: 1

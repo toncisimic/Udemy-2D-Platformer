@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Pickup : MonoBehaviour
 {
-    public bool isGem, isHeal, isFood;
+    public bool isGem, isHeal, isFood, isCoin;
     private bool isCollected;
     public GameObject pickupEffect;
 
@@ -76,6 +76,21 @@ public class Pickup : MonoBehaviour
 
                 AudioManager.instance.PlaySFX(6);
 
+            }
+
+            if (isCoin)
+            {
+                LevelManager.instance.coinCollected++;
+
+                isCollected = true;
+
+                Destroy(gameObject);
+
+                Instantiate(pickupEffect, transform.position, transform.rotation);
+
+                UIController.instance.UpdateCointCountDisplay();
+
+                AudioManager.instance.PlaySFX(6);
             }
         }
     }

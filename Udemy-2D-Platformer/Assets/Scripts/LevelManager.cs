@@ -1,6 +1,7 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LevelManager : MonoBehaviour
 {
@@ -9,6 +10,11 @@ public class LevelManager : MonoBehaviour
     public float waitToRespawn;
     public int gemsCollected;
     public int foodCollected;
+    public int coinCollected;
+    public Button da;
+    public Button ne;
+    public GameObject heart;
+    public GameObject heart2;
 
     private void Awake()
     {
@@ -62,8 +68,11 @@ public class LevelManager : MonoBehaviour
 
     public IEnumerator EndLevelCo()
     {
-        PlayerController.instance.stopInput = true;
+        Debug.Log(PlayerController.instance.horizontalInput);
+        Debug.Log(PlayerController.instance.moveSpeed);
 
+        PlayerController.instance.stopInput = true;
+        
         yield return new WaitForSeconds(1.5f);
 
         CameraController.instance.follow = true;
@@ -72,6 +81,21 @@ public class LevelManager : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
 
         EndLevel.instance.StartEndAnimation();
+
+        yield return new WaitForSeconds(1.5f);
+
+        da.gameObject.active = true;
+        ne.gameObject.active = true;
+    }
+
+    public void Da()
+    {
+        Debug.Log("dosao");
+        da.gameObject.active = false;
+        ne.gameObject.active = false;
+        heart.active = true;
+        heart2.active = true;
+
     }
 
 

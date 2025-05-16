@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,6 +10,10 @@ public class BossController : MonoBehaviour
     public bossStates currentState;
     public Transform theBoss;
     public Animator anim;
+    public int bossHealt;
+    public int currentHealt;
+    public GameObject deathEffect, door;
+    private Animator doorAnimator;
 
     [Header("Movement")]
     public float moveSpeed;
@@ -29,7 +34,9 @@ public class BossController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        currentHealt = bossHealt;
         currentState = bossStates.shooting;
+        doorAnimator = door.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -45,8 +52,8 @@ public class BossController : MonoBehaviour
                     shotCounter = timeBetweenShots;
 
                     var newBullet = Instantiate(bullet,firePoint.position,firePoint.rotation);
-
                     newBullet.transform.localScale = theBoss.transform.localScale;
+                    newBullet.tag = "EnemyBullet";
                 }
 
                 break;
@@ -115,6 +122,24 @@ public class BossController : MonoBehaviour
     {
         currentState = bossStates.hurt;
         hurtCounter = hurtTime;
+
+        currentHealt--;
+
+        if (currentHealt <= 0) {
+            Instantiate(deathEffect, theBoss.position, theBoss.rotation);
+            gameObject.SetActive(false);
+
+            GameObject[] enemyBullets = GameObject.FindGameObjectsWithTag("EnemyBullet");
+            Debug.Log("Dosao do bullet");
+            foreach (GameObject bullet in enemyBullets)
+            {
+                Destroy(bullet);
+            }
+
+            AudioManager.instance.PlaySFX(8);
+            PlayerController.instance.Bounce();
+            doorAnimator.SetTrigger("openDoor");
+        }
 
         anim.SetTrigger("Hit");
     }

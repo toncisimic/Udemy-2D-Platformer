@@ -20,6 +20,10 @@ public class MainMenu : MonoBehaviour
 
     public void StartGame()
     {
+        if (AudioManager1.instance != null)
+        {
+            Destroy(AudioManager1.instance.gameObject);
+        }
         SceneManager.LoadScene(startScreen);
     }
 
